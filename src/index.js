@@ -1,6 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom";
-
+import { createRoot } from "react-dom/client";
 import App from "./App";
+import { TodoProvider } from "./context/todoContext";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const container = document.getElementById("root");
+const rootContainer = createRoot(container);
+rootContainer.render(
+  <TodoProvider>
+    <App />
+  </TodoProvider>
+);
