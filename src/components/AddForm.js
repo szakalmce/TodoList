@@ -3,13 +3,15 @@ import { Box, Button, Container, Grid, TextField } from "@mui/material";
 import { useTodo } from "../context/todoContext";
 
 const AddForm = () => {
-  const { addNewTask, taskValue, setTaskValue } = useTodo();
+  const { addNewTask, taskValue, setTaskValue, setCurrentTask } = useTodo();
 
   const handleAdd = (e) => {
     e.preventDefault();
-    console.log(taskValue);
+
     addNewTask({
+      id: Math.random(),
       task: taskValue,
+      editTask: false,
     });
   };
 
