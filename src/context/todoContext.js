@@ -12,6 +12,7 @@ export const TodoProvider = ({ children }) => {
   const [taskValue, setTaskValue] = useState("");
   const [currentTask, setCurrentTask] = useState("");
   const [edit, setEdit] = useState(false);
+  const [done, setDone] = useState(true);
 
   const addNewTask = (newTask) => {
     setTasks([...tasks, newTask]);
@@ -25,20 +26,19 @@ export const TodoProvider = ({ children }) => {
   };
 
   const editTask = (id) => {
-    const findItem = tasks.find((item) => item.id === id);
-
     tasks.forEach((item) => {
       if (item.id === id) {
         item.editTask = !item.editTask;
-
+        if (item.editTask !== true) {
+          item.task = currentTask;
+        }
         setEdit(!edit);
       } else {
         item.editTask = false;
+        setEdit(!edit);
       }
       return item;
     });
-
-    console.log(id);
   };
 
   window.localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -55,6 +55,8 @@ export const TodoProvider = ({ children }) => {
     editTask,
     currentTask,
     setCurrentTask,
+    done,
+    setDone,
   };
 
   return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;

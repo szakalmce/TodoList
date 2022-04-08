@@ -12,6 +12,7 @@ const AddForm = () => {
       id: Math.random(),
       task: taskValue,
       editTask: false,
+      done: false,
     });
   };
 

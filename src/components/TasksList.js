@@ -28,16 +28,17 @@ const TasksList = () => {
   const {
     tasks,
     deleteTask,
-    edit,
-    taskValue,
-    setTaskValue,
-    setEdit,
     setCurrentTask,
     currentTask,
-    editItem,
-    setTasks,
     editTask,
+    setDone,
+    doneTask,
+    done,
   } = useTodo();
+
+  useEffect(() => {
+    setDone(!done);
+  }, []);
 
   const classes = useStyles();
 
@@ -47,6 +48,16 @@ const TasksList = () => {
 
   const handleEdit = (task) => {
     editTask(task.id);
+  };
+
+  const handleDone = (task) => {
+    tasks.forEach((item) => {
+      if (item.id === task.id) {
+        item.done = !item.done;
+        setDone(!done);
+      }
+      return item;
+    });
   };
 
   return (
@@ -59,7 +70,12 @@ const TasksList = () => {
               return (
                 <ListItem className={classes.btn} key={item.id}>
                   <ListItemIcon>
-                    <Checkbox edge="start" disableRipple />
+                    <Checkbox
+                      onClick={() => handleDone(item)}
+                      onChange={(e) => setDone(e.target.checked)}
+                      edge="start"
+                      disableRipple
+                    />
                   </ListItemIcon>
                   {item.editTask ? (
                     <>
@@ -80,12 +96,18 @@ const TasksList = () => {
                     </>
                   ) : (
                     <>
-                      <ListItemText primary={item.task} />
+                      <ListItemText
+                        style={{
+                          textDecoration:
+                            item.done && done ? "line-through" : null,
+                        }}
+                        primary={item.task}
+                      />
                       <ListItemIcon>
                         <ModeEditOutlineIcon
                           onClick={() => {
-                            handleEdit(item); // ten powinen mieć inną funkcje
-                            setCurrentTask(item.task);
+                            handleEdit(item);
+                            setCurrentTask(item.task); // ten powinen mieć inną funkcje
                           }}
                           style={{ cursor: "pointer" }}
                         />
