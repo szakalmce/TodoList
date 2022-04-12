@@ -1,0 +1,20 @@
+.wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 0;
+}
+
+.list {
+  padding: 0;
+  list-style: none;
+  width: 500px;
+  padding: 1rem;
+  margin: 0 auto;
+}

@@ -1,35 +1,26 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  List,
-  ListItem,
-  ListItemButton,
-  TextField,
-  Typography,
-  ListItemIcon,
-  Checkbox,
-  ListItemText,
-} from "@mui/material";
-import AddForm from "./components/AddForm";
+import { useState } from "react";
+import AddTaskForm from "./components/AddTaskForm";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import TasksList from "./components/TasksList";
+import "./styles.css";
 
 const App = () => {
+  const [tasks, setTasks] = useState([]);
+
+  const addTask = (props) => {
+    setTasks([...tasks, props]);
+  };
+
   return (
-    <>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Typography align="center" gutterBottom variant="h4">
-            TODO LIST 2022
-          </Typography>
-        </Grid>
-      </Grid>
-
-      <AddForm />
-
-      <TasksList />
-    </>
+    <div className="container">
+      <Header tasks={tasks} />
+      <AddTaskForm addTask={addTask} />
+      <TasksList tasks={tasks} setTasks={setTasks} />
+      <div className="footer">
+        <Footer />
+      </div>
+    </div>
   );
 };
 
