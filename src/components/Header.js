@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./Header.module.css";
 
 const Header = ({ tasks }) => {
+  const test = "elo";
+
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.flex}>Simple Todo List</h1>
