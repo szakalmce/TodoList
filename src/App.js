@@ -17,8 +17,12 @@ const App = () => {
   };
 
   const removeTask = (id) => {
-    const newList = tasks.filter((task) => task.id !== id);
-    setTasks(newList);
+    let conf = window.confirm("are you sure?");
+
+    if (conf) {
+      const newList = tasks.filter((task) => task.id !== id);
+      setTasks(newList);
+    }
   };
 
   const doneTask = (id) => {

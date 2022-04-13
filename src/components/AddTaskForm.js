@@ -4,6 +4,8 @@ import styles from "./AddTaskForm.module.css";
 const AddTaskForm = ({ addTask }) => {
   const [task, setTask] = useState("");
 
+  const isAdd = task.length > 5;
+
   const handleNewTask = (e) => {
     e.preventDefault();
 
@@ -30,7 +32,7 @@ const AddTaskForm = ({ addTask }) => {
             placeholder="add new task..."
           />
         </div>
-        <button type="submit" className={styles.button}>
+        <button disabled={!isAdd} type="submit" className={styles.button}>
           Add
         </button>
       </form>
