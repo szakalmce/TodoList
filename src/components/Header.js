@@ -2,12 +2,15 @@ import React from "react";
 import styles from "./Header.module.css";
 
 const Header = ({ tasks }) => {
-  const test = "elo";
+  const doneTasks = tasks.filter((item) => item.isDone === true);
 
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.flex}>Simple Todo List</h1>
-      <p className={styles.absolute}>Items todo: {tasks.length}</p>
+      <div className={styles.absolute}>
+        <p>Items todo: {tasks.length}</p>
+        <p>Items done: {doneTasks.length}</p>
+      </div>
     </div>
   );
 };

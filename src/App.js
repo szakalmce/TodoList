@@ -6,17 +6,63 @@ import TasksList from "./components/TasksList";
 import "./styles.css";
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(
+    JSON.parse(window.localStorage.getItem("tasks"))
+  );
+
+  console.log(tasks);
 
   const addTask = (props) => {
     setTasks([...tasks, props]);
   };
 
+  const removeTask = (id) => {
+    const newList = tasks.filter((task) => task.id !== id);
+    setTasks(newList);
+  };
+
+  const doneTask = (id) => {
+    const newList = tasks.map((item) => {
+      if (item.id === id) {
+        item.isDone = !item.isDone;
+      }
+      return item;
+    });
+    setTasks(newList);
+  };
+
+  const editTask = (id, newTaskValue, setNewTaskValue) => {
+    const newList = tasks.map((item) => {
+      if (item.id === id) {
+        item.isEdit = !item.isEdit;
+        if (item.isEdit) {
+          setNewTaskValue(item.task);
+        } else {
+          item.task = newTaskValue;
+        }
+      } else {
+        item.isEdit = false;
+      }
+      return item;
+    });
+
+    setTasks(newList);
+  };
+
+  // save localstorage
+  window.localStorage.setItem("tasks", JSON.stringify(tasks));
+
   return (
     <div className="container">
       <Header tasks={tasks} />
       <AddTaskForm addTask={addTask} />
-      <TasksList tasks={tasks} setTasks={setTasks} />
+      <TasksList
+        doneTask={doneTask}
+        removeTask={removeTask}
+        editTask={editTask}
+        tasks={tasks}
+        setTasks={setTasks}
+      />
       <div className="footer">
         <Footer />
       </div>

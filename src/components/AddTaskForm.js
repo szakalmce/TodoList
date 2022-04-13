@@ -11,6 +11,7 @@ const AddTaskForm = ({ addTask }) => {
       id: Math.random(),
       task: task,
       isDone: false,
+      isEdit: false,
     });
 
     setTask("");
