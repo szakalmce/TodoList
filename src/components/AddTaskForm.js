@@ -10,6 +10,7 @@ const AddTaskForm = ({ addTask }) => {
     addTask({
       id: Math.random(),
       task: task,
+      isDone: false,
     });
 
     setTask("");

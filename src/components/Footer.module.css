@@ -1,4 +1,6 @@
 .footer {
   padding: 2rem;
   text-align: right;
+  display: flex;
+  justify-content: space-between;
 }

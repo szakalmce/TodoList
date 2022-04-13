@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ListItem from "./ListItem";
 import styles from "./TaskList.module.css";
 
@@ -14,7 +14,7 @@ const TasksList = ({ tasks, setTasks }) => {
       <ul className={styles.list}>
         {tasks.map((task) => (
           <div className={styles.task} key={task.id}>
-            <ListItem task={task.task} />
+            <ListItem setTasks={setTasks} tasks={tasks} task={task} />
             <button onClick={() => handleRemove(task.id)}>Remove item</button>
           </div>
         ))}
