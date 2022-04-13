@@ -2,7 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Test
+## 1.0.1
+
+- Add Edit button
+- Add Done/Undone button
+- Simple form validation
+- Remove item (confirm)
+- LocalStorage
 
 In the project directory, you can run:
 
