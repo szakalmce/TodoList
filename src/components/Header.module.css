@@ -5,8 +5,17 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
+  position: relative;
 }
 
 .flex {
   flex: 1;
+
+  text-align: center;
+  width: 100%;
+}
+
+.absolute {
+  position: absolute;
+  right: 2rem;
 }
