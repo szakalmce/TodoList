@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddTaskForm from "./components/AddTaskForm";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -7,7 +7,9 @@ import "./styles.css";
 
 const App = () => {
   const [tasks, setTasks] = useState(
-    JSON.parse(window.localStorage.getItem("tasks"))
+    JSON.parse(window.localStorage.getItem("tasks")) === null
+      ? []
+      : JSON.parse(window.localStorage.getItem("tasks"))
   );
 
   console.log(tasks);
@@ -36,20 +38,42 @@ const App = () => {
   };
 
   const editTask = (id, newTaskValue, setNewTaskValue) => {
+    console.log(newTaskValue);
+
+    // const newList = tasks.map((item) => {
+    //   if (item.id === id) {
+    //     item.isEdit = !item.isEdit;
+    //     if (item.isEdit) {
+    //       setNewTaskValue(item.task);
+    //     } else {
+    //       item.task = newTaskValue;
+    //     }
+    //   } else {
+    //     item.isEdit = false;
+    //   }
+    //   return item;
+    // });
+    // setTasks(newList);
+
     const newList = tasks.map((item) => {
       if (item.id === id) {
         item.isEdit = !item.isEdit;
         if (item.isEdit) {
-          setNewTaskValue(item.task);
+          setNewTaskValue({
+            title: item.task,
+            content: item.content,
+            priority: item.priority,
+          });
         } else {
-          item.task = newTaskValue;
+          item.task = newTaskValue.title;
+          item.content = newTaskValue.content;
+          item.priority = newTaskValue.priority;
         }
       } else {
         item.isEdit = false;
       }
       return item;
     });
-
     setTasks(newList);
   };
 

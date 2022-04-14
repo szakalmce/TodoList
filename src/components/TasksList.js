@@ -7,7 +7,7 @@ const TasksList = ({ tasks, setTasks, removeTask, doneTask, editTask }) => {
     <div className={styles.wrapper}>
       <ul className={styles.list}>
         {tasks.map((task) => (
-          <div className={styles.task} key={task.id}>
+          <div key={task.id}>
             <ListItem
               doneTask={doneTask}
               setTasks={setTasks}

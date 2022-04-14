@@ -3,5 +3,11 @@
 }
 
 .editButton {
-  margin-left: 1rem;
+  margin: 0 1rem;
+  background-color: transparent;
+  border: none;
+}
+
+.trashButton {
+  cursor: pointer;
 }
